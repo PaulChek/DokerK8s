@@ -2,8 +2,11 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
 WORKDIR /app
-EXPOSE 80
 
+ENV PORT 80 #using of env var with default value
+EXPOSE $PORT
+
+#VOLUME ["/app/folder"] creates anonymous volume on a host machine and mapped into container this path;
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["Weather.API/Weather.API.csproj", "Weather.API/"]
