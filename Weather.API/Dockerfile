@@ -3,8 +3,10 @@
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
 WORKDIR /app
 
-ARG Default_Port=80
-ENV PORT=Default_Port #using of env var with default value
+ARG D_PORT=80
+ENV "ConnectionStrings:Host"=Succerr #overrides var in appsettings.jsom
+ENV PORT=$D_PORT 
+#using of env var with default value
 EXPOSE $PORT
 
 #VOLUME ["/app/folder"] creates anonymous volume on a host machine and mapped into container this path;

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,11 @@ namespace Weather.API.Controllers {
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IConfiguration _configuration;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger) {
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IConfiguration configuration) {
             _logger = logger;
+            _configuration = configuration;
         }
 
         [HttpGet]
@@ -29,6 +32,10 @@ namespace Weather.API.Controllers {
                 Summary = Summaries[rng.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+        [HttpGet("{id}")]
+        public string Get(int id) {
+            return "suckmydick" + id + _configuration["ConnectionStrings:Host"];
         }
     }
 }
