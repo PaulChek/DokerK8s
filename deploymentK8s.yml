@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weather-dep                           #name of deployment
+spec:                                       #spec for deploymetn
+  replicas: 1                                #amount of pods in desired state
+  selector:
+    matchLabels:
+      app: weather-pod
+  template:
+    metadata:                                #tempalate of pod always!
+      labels:
+        app: weather-pod
+    spec:                                    #spec for pod
+      containers:
+        - name: weather-container
+          image: paulchek/weatherapi_kube
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"

@@ -9,7 +9,8 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DeploymentK8s", "DeploymentK8s", "{FE46683E-D20B-4164-BFF9-731A8921610D}"
 	ProjectSection(SolutionItems) = preProject
-		DeploymentK8s.yaml = DeploymentK8s.yaml
+		deploymentK8s.yml = deploymentK8s.yml
+		service.yml = service.yml
 	EndProjectSection
 EndProject
 Global
