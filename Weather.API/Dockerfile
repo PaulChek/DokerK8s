@@ -1,10 +1,11 @@
-#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
+#multy staged dockerfile
 
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
 WORKDIR /app
 
 ARG D_PORT=80
 ENV "ConnectionStrings:Host"=Succerr #overrides var in appsettings.jsom
+ENV ASPNETCORE_ENVIRONMENT=Development
 ENV PORT=$D_PORT 
 #using of env var with default value
 EXPOSE $PORT

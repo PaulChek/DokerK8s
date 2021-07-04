@@ -37,5 +37,10 @@ namespace Weather.API.Controllers {
         public string Get(int id) {
             return "suckmydick" + id + _configuration["ConnectionStrings:Host"];
         }
+        [HttpGet("error", Name = "GetError")]
+        public string GetError() {
+            var s = AppContext.GetData("sucker");
+            return s+"";
+        }
     }
 }
