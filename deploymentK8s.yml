@@ -22,3 +22,5 @@ spec:                                       #spec for deploymetn
             limits:
               memory: "128Mi"
               cpu: "500m"
+        #- name: mongo-container
+        #  image: mongo
