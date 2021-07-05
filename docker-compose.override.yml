@@ -5,6 +5,8 @@ services:
     container_name: weather.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+     - my_db:/app/Db
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost/healthcheck"]
       interval: 1m30s

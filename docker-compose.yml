@@ -6,3 +6,6 @@ services:
     build:
       context: .
       dockerfile: Weather.API/Dockerfile
+
+volumes:
+  my_db:

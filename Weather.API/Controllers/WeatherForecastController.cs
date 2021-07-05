@@ -3,7 +3,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Weather.API.Controllers {
@@ -37,10 +39,25 @@ namespace Weather.API.Controllers {
         public string Get(int id) {
             return "suckmydick" + id + _configuration["ConnectionStrings:Host"];
         }
-        [HttpGet("error", Name = "GetError")]
-        public string GetError() {
-            var s = AppContext.GetData("sucker");
-            return s+"";
+
+        [HttpGet("story", Name = "GetStory")]
+        public string GetStory() {
+            var res = "";
+
+            using (StreamReader sr = new StreamReader("Db/Db.txt"))
+                res = sr.ReadToEnd();
+
+            return res;
+        }
+        [HttpPost("add_story", Name = "AddStory")]
+        public bool AddStory([FromBody] Story story) {
+
+            using (StreamWriter sw = new StreamWriter("Db/Db.txt", append: true)) {
+
+                sw.WriteLine(story.s);
+            }
+            return true;
         }
     }
+    public record Story(string s);
 }
