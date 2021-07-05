@@ -52,10 +52,11 @@ namespace Weather.API.Controllers {
         [HttpPost("add_story", Name = "AddStory")]
         public bool AddStory([FromBody] Story story) {
 
-            using (StreamWriter sw = new StreamWriter("Db/Db.txt", append: true)) {
-
+            if (!System.IO.File.Exists("Db/Db.txt")) System.IO.File.Create("Db/Db.txt").Close();
+            using (StreamWriter sw = new StreamWriter("Db/Db.txt", append: true)) 
                 sw.WriteLine(story.s);
-            }
+
+            
             return true;
         }
     }
