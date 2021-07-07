@@ -19,10 +19,12 @@ namespace Weather.API.Controllers {
 
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly IConfiguration _configuration;
+        private readonly string _pathToDb;
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger, IConfiguration configuration) {
             _logger = logger;
             _configuration = configuration;
+            _pathToDb = configuration["MyDbPath"];
         }
 
         [HttpGet]
@@ -44,7 +46,7 @@ namespace Weather.API.Controllers {
         public string GetStory() {
             var res = "";
 
-            using (StreamReader sr = new StreamReader("Db/Db.txt"))
+            using (StreamReader sr = new StreamReader(_pathToDb))
                 res = sr.ReadToEnd();
 
             return res;
@@ -52,8 +54,8 @@ namespace Weather.API.Controllers {
         [HttpPost("add_story", Name = "AddStory")]
         public bool AddStory([FromBody] Story story) {
 
-            if (!System.IO.File.Exists("Db/Db.txt")) System.IO.File.Create("Db/Db.txt").Close();
-            using (StreamWriter sw = new StreamWriter("Db/Db.txt", append: true)) 
+            if (!System.IO.File.Exists(_pathToDb)) System.IO.File.Create(_pathToDb).Close();
+            using (StreamWriter sw = new StreamWriter(_pathToDb, append: true)) 
                 sw.WriteLine(story.s);
 
             

@@ -10,6 +10,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DeploymentK8s", "DeploymentK8s", "{FE46683E-D20B-4164-BFF9-731A8921610D}"
 	ProjectSection(SolutionItems) = preProject
 		deploymentK8s.yml = deploymentK8s.yml
+		env.yml = env.yml
+		host-pv.yml = host-pv.yml
+		host-pvclaim.yml = host-pvclaim.yml
 		master-depl.yml = master-depl.yml
 		service.yml = service.yml
 	EndProjectSection
